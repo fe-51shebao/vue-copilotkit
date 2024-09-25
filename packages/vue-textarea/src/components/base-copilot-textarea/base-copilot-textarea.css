@@ -1,0 +1,10 @@
+@import '../../css/tailwind.css';
+.copilot-textarea.with-branding::after {
+    content: ''; /* Initially empty because we overrdie this CSS dynamically and we want to avoid flashing */
+    position: absolute;
+}
+    
+  
+.copilot-textarea.no-branding::after {
+    content: '';
+}

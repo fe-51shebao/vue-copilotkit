@@ -1,0 +1,19 @@
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.hovering-toolbar-dialog {
+  .el-dialog__header {
+    display: none;
+  }
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+}
