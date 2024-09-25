@@ -1,0 +1,12 @@
+html {
+  --copilot-kit-primary-color: rgb(59 130 246);
+  --copilot-kit-contrast-color: rgb(255 255 255);
+  --copilot-kit-secondary-color: rgb(243 244 246);
+  --copilot-kit-secondary-contrast-color: rgb(0 0 0);
+  --copilot-kit-background-color: rgb(255 255 255);
+  --copilot-kit-muted-color: rgb(106 106 106);
+  --copilot-kit-separator-color: rgba(0, 0, 0, 0.08);
+  --copilot-kit-scrollbar-color: rgba(0, 0, 0, 0.2);
+  --copilot-kit-response-button-color: #333;
+  --copilot-kit-response-button-background-color: #fff;
+}

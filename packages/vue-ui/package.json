@@ -1,0 +1,32 @@
+{
+  "name": "@copilotkit/vue-ui",
+  "private": false,
+  "version": "1.0.2",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@copilotkit/runtime-client-gql": "^1.1.0",
+    "@copilotkit/shared": "^1.1.0",
+    "@copilotkit/vue-core": "workspace:*",
+    "md-editor-v3": "4.18.1"
+  },
+  "devDependencies": {
+    "@copilotkit/vite-config": "workspace:*",
+    "vite": "^5.3.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
