@@ -1,0 +1,26 @@
+{
+  "name": "examples",
+  "private": true,
+  "version": "1.0.2",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.5",
+    "@vitejs/plugin-vue-jsx": "^4.0.0",
+    "typescript": "^5.2.2",
+    "unocss": "^0.62.4",
+    "vite": "^5.3.4",
+    "vite-plugin-node-polyfills": "^0.22.0",
+    "vite-plugin-pages": "^0.32.3"
+  },
+  "dependencies": {
+    "@copilotkit/runtime-client-gql": "^1.1.0",
+    "@element-plus/icons-vue": "^2.3.1",
+    "element-plus": "^2.7.8",
+    "vue-router": "^4.4.3"
+  }
+}

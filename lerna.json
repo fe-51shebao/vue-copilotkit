@@ -1,0 +1,11 @@
+{
+  "version": "1.0.2",
+  "npmClient": "pnpm",
+  "command": {
+    "version": {
+      "forcePublish": true,
+      "exact": true,
+      "message": "chore(release): 😊 publish %s"
+    }
+  }
+}

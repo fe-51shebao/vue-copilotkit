@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.json",
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "./src/**/*.vue"],
+  "compilerOptions": {
+    "sourceMap": false,
+    "inlineSources": false,
+    "paths": {
+      "@copilotkit/*": ["../packages/*/src"]
+    }
+  }
+}
