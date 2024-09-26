@@ -16,4 +16,4 @@
 ### 3、支持聊天窗口的一些组合功能，参照open-webui， cursor。
 
 ![Video](https://github.com/fe-51shebao/.github/blob/bcc015dbed78f86121d13e9ba5cf2a35ef814541/demo1.mov)
-![Video](https://raw.githubusercontent.com/fe-51shebao/.github/bcc015dbed78f86121d13e9ba5cf2a35ef814541/demo3.mov)
+![Video](https://github.com/fe-51shebao/.github/raw/main/demo3.mov)
