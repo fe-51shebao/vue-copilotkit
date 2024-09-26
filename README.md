@@ -15,5 +15,5 @@
 ### 2、接入更简单，输入url即可接入ollama，xinference之类。可切换模型，或者直接用国产大模型的key。
 ### 3、支持聊天窗口的一些组合功能，参照open-webui， cursor。
 
-![Video](https://user-images.githubusercontent.com/fe-51shebao/.github/demo1.mov)
-![Video](https://user-images.githubusercontent.com/fe-51shebao/.github/demo3.mov)
+![Video](https://raw.githubusercontent.com/fe-51shebao/.github/refs/heads/main/demo1.mov)
+![Video](https://raw.githubusercontent.com/fe-51shebao/.github/refs/heads/main/demo3.mov)
