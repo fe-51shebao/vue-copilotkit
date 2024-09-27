@@ -18,7 +18,7 @@
 ## 使用教程相关文档
 ## Usage Tutorial Documentation
 
-[借助MoAiStudio不写一行代码，完成页面开发-掘金](https://juejin.cn/post/7413682017298710562)
+[借助MoAiStudio不写一行代码，完成页面开发-掘金](https://juejin.cn/post/7413682017298710562)<br>
 [借助MoAiStudio不写一行代码，完成页面开发-csdn](https://blog.csdn.net/weixin_49477258/article/details/142205945)
 
 ![Image](https://github.com/fe-51shebao/.github/raw/main/demo1-ok.gif)
