@@ -15,5 +15,11 @@
 ### 2、接入更简单，输入url即可接入ollama，xinference之类。可切换模型，或者直接用国产大模型的key。
 ### 3、支持聊天窗口的一些组合功能，参照open-webui， cursor。
 
+## 使用教程相关文档
+## Usage Tutorial Documentation
+
+[借助MoAiStudio不写一行代码，完成页面开发-掘金](https://juejin.cn/post/7413682017298710562)
+[借助MoAiStudio不写一行代码，完成页面开发-csdn](https://blog.csdn.net/weixin_49477258/article/details/142205945)
+
 ![Image](https://github.com/fe-51shebao/.github/raw/main/demo1-ok.gif)
 ![Image](https://github.com/fe-51shebao/.github/raw/main/demo3-ok.gif)
