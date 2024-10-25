@@ -1,234 +1,183 @@
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="../assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <!-- <HelloWorld msg="Vite + Vue1" /> -->
-  <div class="box" style="display: flex; margin-bottom: 10px">
-    <ElInput v-model="input" style="width: 260px; margin-right: 10px" placeholder="Please input u want todo" />
-    <ElButton type="primary" style="width: 90px" @click="InputAddTodo">Add Todo</ElButton>
-  </div>
-  <div class="todo_list">
-    <div v-for="(val, ind) in todos" :key="ind" style="display: flex" class="todo_list-item">
-      <!-- <p class="">{{val }}</p> -->
-      <ElCheckbox v-model="val.isCompleted" :label="val.text" size="large" border
-        style="width: 320px; text-align: left; margin-bottom: 5px; margin-right: 6px" />
-      <ElButton @click="DelTodo(ind)" style="margin-top: 4px" type="danger" :icon="Delete" circle />
+  <div class="todolist-container">
+    <div class="todolist-content">
+      <h1 class="title">✍️ My Todo</h1>
+      <div class="box" style="display: flex; margin-bottom: 10px">
+        <el-input v-model="input" style="flex: 1; margin-right: 10px" placeholder="Add a new todo..." />
+        <el-button type="primary" style="width: 90px; height: 100%" @click="addTodo('')">Add</el-button>
+      </div>
+      <div class="todo_list">
+        <TodoItem
+          v-for="(todo, index) in sortedTodos"
+          :key="todo.id"
+          :todo="todo"
+          @toggle-complete="(id) => toggleComplete(id, !todo.isCompleted)"
+          @delete-todo="deleteTodo"
+        />
+      </div>
     </div>
+    <!-- copilot -->
+    <CopilotPopup />
   </div>
-  <!-- copilot -->
-  <CopilotPopup/>
-  <!-- <CopilotSidebar/> -->
-
 </template>
 
 <script setup lang="ts">
-import { ElButton, ElInput, ElCheckbox, ElCard, ElIcon } from 'element-plus'
-import { Delete, ChatDotRound, ArrowDownBold, Position, Close } from '@element-plus/icons-vue'
-import { ref, reactive, Ref } from 'vue'
-import { CopilotPopup, CopilotSidebar } from '@copilotkit/vue-ui'
-import { Role, TextMessage, Message } from '@copilotkit/runtime-client-gql'
-import { useCopilotChat,  useCopilotAction,  useCopilotReadable} from '@copilotkit/vue-core'
+import { ref, computed } from 'vue'
+import { ElInput, ElButton } from 'element-plus'
+import TodoItem from '../components/TodoItem.vue'
+import { CopilotPopup } from '@copilotkit/vue-ui'
+import { useCopilotAction, useCopilotReadable } from '@copilotkit/vue-core'
 
 type Todo = {
-  id: string
+  id: number
   text: string
   isCompleted: boolean
-  assignedTo?: string
+  sort: number
 }
 
-let input: Ref<string> = ref('')
-let todos: Todo[] = reactive([])
+const input = ref('')
+const todos = ref<Todo[]>([])
 
-interface Dialog {
-  id: string;
-  text: string;
-  isCopilot?: boolean;
-  assignedTo?: string;
-}
-
-let showChat:Ref<boolean> = ref(true)
-let input_copilot: Ref<string> = ref('')
-let dialogs: Dialog[] = reactive([{
-  id:'001',
-  text: 'Hi you! 👋 I can help you manage your todo list.',
-  isCopilot: true,
-}])
-
-function AddTodo(todoList: Todo[]) {
-  if(todoList && todoList.length ){
-    todos.length = 0 // 重制
-    todoList.forEach(i=>{
-      todos.push(i)
+const addTodo = (text: string) => {
+  if (input.value.trim() || text) {
+    todos.value.push({
+      id: todos.value.length ,
+      text: text || input.value,
+      isCompleted: false,
+      sort: todos.value.length + 1
     })
-  }else {
-    todos.push({ id: Date.now().toString(), text: input.value, isCompleted: false })
-  }
-}
-function InputAddTodo() {
-  if (input.value != '') {
-    AddTodo()
     input.value = ''
   }
-}
-function DelTodo(index: number) {
-  todos.splice(index, 1)
+  console.log(todos.value)
 }
 
-function OpenChat(open: boolean) {
-  showChat.value = open
+const toggleComplete = (id: number, isCompleted: boolean) => {
+  const todo = todos.value.find(t => t.id === id)
+  if (todo) {
+    todo.isCompleted = isCompleted
+    sortTodos()
+  }
 }
 
-function CloseChat() {
-  showChat.value = false
-}
-function SendMes() {
-  if (input_copilot.value != '') {
-    dialogs.push({ id: Date.now().toString(), text: input_copilot.value,isCopilot:false})
-    input_copilot.value = ''
-  }  
-  GetCopilotMes()
-}
-function GetCopilotMes(todoList: [{ text:string }]){
-  let todolist: [{ text: string }] = [{ text: '123test' }]
-  // if (input_copilot.value != '') {
-    dialogs.push({ id: Date.now().toString(), text: `23333333381007`, isCopilot: true })
-  //   input_copilot.value = ''
-  // }
-  if (todoList && todoList.length > 0) {
-    todoList.forEach(val => {
-      todolist.push({ text: val.text })
-    })
-  }    
-  AddTodo(todolist)
+
+const deleteTodo = (id: number) => {
+  todos.value = todos.value.filter(t => t.id !== id)
 }
 
+const sortTodos = () => {
+  todos.value.sort((a, b) => {
+    if (a.isCompleted && !b.isCompleted) return 1
+    if (!a.isCompleted && b.isCompleted) return -1
+    return a.sort - b.sort
+  })
+}
+
+const sortedTodos = computed(() => {
+  return [...todos.value].sort((a, b) => {
+    if (a.isCompleted && !b.isCompleted) return 1
+    if (!a.isCompleted && b.isCompleted) return -1
+    return a.sort - b.sort
+  })
+})
 
 /**
-   *
-   * 4) make the users todo list available with useCopilotReadable
-   *
-   **/
+ * 4) make the users todo list available with useCopilotReadable
+ **/
 useCopilotReadable({
   description: "The user's todo list.",
-  value: todos,
-});
-
+  value: todos.value,
+})
 
 useCopilotAction({
-  name: "updateTodoList",
-  description: "Update the users todo list",
-  parameters: [
-    {
-      name: "items",
-      type: "object[]",
-      description: "The new and updated todo list items.",
-      attributes: [
-        {
-          name: "id",
-          type: "string",
-          description:
-            "The id of the todo item. When creating a new todo item, just make up a new id.",
-        },
-        {
-          name: "text",
-          type: "string",
-          description: "The text of the todo item.",
-        },
-        {
-          name: "isCompleted",
-          type: "boolean",
-          description: "The completion status of the todo item.",
-        },
-        {
-          name: "assignedTo",
-          type: "string",
-          description:
-            "The person assigned to the todo item. If you don't know, assign it to 'YOU'.",
-          required: true,
-        },
-      ],
-    },
-  ],
-  handler: ({ items }) => {
-    console.log(items,`-------`);
-    AddTodo(items)
-  },
-  // render: "Updating the todo list...",
-});
+    name: "addTask",
+    description: "Adds a todo to the todo list",
+    parameters: [
+      {
+        name: "text",
+        type: "string",
+        description: "The text of the todo",
+        required: true,
+      },
+    ],
+    handler: ({ text }) => {
+      console.log(text,`addTask`);
+      addTodo(text);
+    }
+  });
 
+  useCopilotAction({
+    name: "deleteTask",
+    description: "Deletes a todo from the todo list",
+    parameters: [
+      {
+        name: "id",
+        type: "number",
+        description: "The id of the todo",
+        required: true,
+      },
+    ],
+    handler: ({ id }) => {
+      console.log(id,`deleteTask`);
+      deleteTodo(id);
+    }
+  });
 
-
+  useCopilotAction({
+    name: "setTaskStatus",
+    description: "Sets the status of a todo",
+    parameters: [
+      {
+        name: "id",
+        type: "number",
+        description: "The id of the todo",
+        required: true,
+      },
+      {
+        name: "isCompleted",
+        type: "boolean",
+        description: "The status of the todo",
+        required: true,
+      },
+    ],
+    handler: ({ id, isCompleted }) => {
+      console.log(id, isCompleted,`setTaskStatus`);
+      toggleComplete(id, isCompleted);
+    }
+  });
 </script>
 
 <style scoped>
-/*  copilo style */
-.copilot_button {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
+.todolist-container {
+  padding: 6rem;
+  min-width: 500px;
+  width: 40%;
+  height: calc(100vh - 16rem);
 }
 
-.copilot_window {
-  position: fixed;
-  right: 1rem;
-  bottom: 5rem;
-  height: 600px;
-  min-height: 200px;
-  max-height: calc(100% - 6rem);
-  width: 24rem;
-  overflow-y: auto;
+.todolist-content {
+  text-align: left;
 }
 
-:deep(.el-card__header) {
-  background: rgb(64, 158, 255);
-  color: #fff;
+.box {
+  display: flex;
+  margin-bottom: 10px;
+  height: 40px;
 }
-:deep(.el-card__body){
-  height: 415px;
+
+.todo_list {
+  margin-top: 20px;
 }
-:deep(.el-card__footer) {
-  background:rgb(255, 255, 255);
-  /* padding: 0; */
-  box-sizing: border-box;
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
-:deep(.copilot_window-input) {
-  border:0px ;
-  /* margin: 18px 20px; */
-}
-/* border-top: 1px solid var(--copilot-kit-separator-color);
-padding-left: 2rem;
-padding-right: 1rem;
-padding-top: 1rem;
-padding-bottom: 1rem;
-display: flex;
-align-items: center;
-cursor: text;
-position: relative;
-border-bottom-left-radius: 0.75rem;
-border-bottom-right-radius: 0.75rem;
-background-color: var(--copilot-kit-background-color); */
-.dialog_mes {
-  border-radius: 0.5rem;
-  padding: 1rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  overflow-wrap: break-word;
-  max-width: 80%;
-  margin-bottom: 1.5rem;
-}
-.copilot_mes {
-  background: rgb(243, 244, 246);
-  color: #000;
-  margin-right: auto;
-}
-.user_mes {
-  background: rgb(64, 158, 255);
-  color: #fff;
-  margin-left: auto;
+
+.todo_list-item {
+  background-color: #f5f5f5;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 </style>

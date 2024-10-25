@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, ref } from 'vue'
+import { defineComponent, onMounted, ref, reactive } from 'vue'
 
 export default defineComponent({
   name: 'ProvideApiKeyDialog',
@@ -6,16 +6,23 @@ export default defineComponent({
     apiKey: {
       type: String,
     },
+    runtimeUrl:{
+      type: String,
+    }
   },
-  emits: ['update:apiKey'],
+  emits: ['update:apiKey','update:runtimeUrl'],
   setup(props, { emit }) {
     const showDialog = ref(false)
     const setShowDialog = (value: boolean) => {
       showDialog.value = value
     }
-    const apiKeyV = ref('')
+    const dialogV = reactive({
+      apiKey:props.apiKey,
+      runtimeUrl:props.runtimeUrl
+    })
     const handleSubmit = () => {
-      emit('update:apiKey', apiKeyV.value)
+      emit('update:apiKey', dialogV.apiKey)
+      emit('update:runtimeUrl', dialogV.runtimeUrl)
       setShowDialog(false)
     }
     onMounted(() => {
@@ -45,14 +52,18 @@ export default defineComponent({
               </a>
               .
             </span>
+            <p>当采用默认的runtimeUrl='http://47.94.253.214/api/copilotkit/zhipu'时，可以在10.30之前免费使用，额度用完为止（貌似莫名不稳定）</p>
+            <p>当设置runtimeUrl='http://47.94.253.214/api/copilotkit'时，需要在apiKey输入通义千问的key自行使用，服务器端只是透传，不存储</p>
+            <p>当设置runtimeUrl=''时，需要在apiKey输入copilotkit的publicKey,会连接cloud.copilotkit.ai</p>
           </div>
           <div class="h-20px"></div>
           <div class="flex">
-            <el-input v-model={apiKeyV.value} placeholder="ck_pub_..." class="flex-1" />
+            <el-input v-model={dialogV.runtimeUrl} placeholder="copilotkit后端代理" class="flex-1" />
+            <el-input v-model={dialogV.apiKey} placeholder="ck_pub_..." class="flex-1" />
             <el-button
             class="ml-2 w-80px"
             type="primary"
-            disabled={apiKeyV.value === ""}
+            disabled={dialogV.value === ""}
             onClick={handleSubmit}
             >
               Submit
