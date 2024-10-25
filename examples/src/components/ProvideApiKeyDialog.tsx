@@ -23,11 +23,15 @@ export default defineComponent({
     const handleSubmit = () => {
       emit('update:apiKey', dialogV.apiKey)
       emit('update:runtimeUrl', dialogV.runtimeUrl)
+      localStorage.setItem("apiKey",''+dialogV.apiKey)
+      localStorage.setItem("runtimeUrl",''+dialogV.runtimeUrl)
+      setShowDialog(false)
+    }
+    const handleCancel = () => {
       setShowDialog(false)
     }
     onMounted(() => {
-      console.log('props.apiKey', props.apiKey)
-      !props.apiKey && setShowDialog(true)
+      (!props.apiKey&&!props.runtimeUrl) && setShowDialog(true)
     })
     return () => (
       <div class="provide-api-key-dialog text-left">
@@ -63,10 +67,16 @@ export default defineComponent({
             <el-button
             class="ml-2 w-80px"
             type="primary"
-            disabled={dialogV.value === ""}
             onClick={handleSubmit}
             >
-              Submit
+              修改
+            </el-button>
+            <el-button
+            class="ml-2 w-80px"
+            type="primary"
+            onClick={handleCancel}
+            >
+              取消
             </el-button>
           </div>
         </el-dialog>                                                                                                      
