@@ -38,6 +38,9 @@
       </div>
     </div>
   </div>
+  <div>
+    <img src="https://github.com/fe-51shebao/.github/raw/main/demo1-ok.gif" alt="智能email回复演示">
+  </div>
 </template>
 
 <script setup lang="ts">

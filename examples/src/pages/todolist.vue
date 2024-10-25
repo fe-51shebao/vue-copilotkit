@@ -19,6 +19,9 @@
     <!-- copilot -->
     <CopilotPopup />
   </div>
+  <div>
+    <img src="https://github.com/fe-51shebao/.github/raw/main/demo3-ok.gif" alt="智能待办演示">
+  </div>
 </template>
 
 <script setup lang="ts">

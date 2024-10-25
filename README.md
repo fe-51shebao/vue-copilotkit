@@ -12,7 +12,7 @@
 
 ## 未来可能改进方向：
 ### 1、保持跟上[copilotkit](https://github.com/CopilotKit/CopilotKit)的更新节奏
-### 2、接入更简单，输入url即可接入ollama，xinference之类。可切换模型，或者直接用国产大模型的key。
+### 2、接入更简单，输入url即可接入ollama，xinference之类。可切换模型，或者直接用国产大模型的key。(初步解决)
 ### 3、支持聊天窗口的一些组合功能，参照open-webui， cursor。
 
 ## 使用教程相关文档
@@ -23,3 +23,4 @@
 
 ![Image](https://github.com/fe-51shebao/.github/raw/main/demo1-ok.gif)
 ![Image](https://github.com/fe-51shebao/.github/raw/main/demo3-ok.gif)
+![Image](https://github.com/fe-51shebao/.github/raw/main/demo-form.gif)

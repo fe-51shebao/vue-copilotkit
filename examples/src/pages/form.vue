@@ -38,6 +38,9 @@
 
   <!-- copilot -->
   <CopilotPopup />
+  <div>
+    <img src="https://github.com/fe-51shebao/.github/raw/main/demo-form.gif" alt="智能填充表单演示">
+  </div>
 </template>
 
 <script lang="ts" setup>
