@@ -17,7 +17,7 @@
 
 ## 使用教程相关文档
 ## Usage Tutorial Documentation
-演示站点：<a href="http://www.vue-copilotkit.fun" target="_blank">vue-copilotkit</a>
+演示站点：<a href="http://www.vue-copilotkit.fun" target="_blank">vue-copilotkit</a><br>
 <a href="https://juejin.cn/post/7413682017298710562" target="_blank">借助MoAiStudio不写一行代码，完成页面开发-掘金</a><br>
 <a href="https://blog.csdn.net/weixin_49477258/article/details/142205945" target="_blank">借助MoAiStudio不写一行代码，完成页面开发-csdn</a><br>
 
