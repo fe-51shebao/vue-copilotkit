@@ -26,7 +26,7 @@
 
   <div class="inner_part">
     <label for="slideImg" class="img">
-      <img class="img_2" src="https://github.com/fe-51shebao/.github/raw/main/demo1-ok.gif">
+      <img class="img_2" src="https://github.com/fe-51shebao/.github/raw/main/demo-form.gif">
     </label>
     <div class="content content_2">
       <div class="title">表单自动填写演示</div>
@@ -39,7 +39,7 @@
 
   <div class="inner_part">
     <label for="slideImg" class="img">
-      <img class="img_3" src="https://github.com/fe-51shebao/.github/raw/main/demo-form.gif">
+      <img class="img_3" src="https://github.com/fe-51shebao/.github/raw/main/demo1-ok.gif">
     </label>
     <div class="content content_3">
       <div class="title">email自动回复</div>
