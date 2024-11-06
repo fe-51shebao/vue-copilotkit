@@ -107,7 +107,8 @@ export const BaseCopilotTextarea = defineComponent({
       currentAutocompleteSuggestion,
       onChangeHandler: onChangeHandlerForAutocomplete,
       onKeyDownHandler: onKeyDownHandlerForAutocomplete,
-      onTouchStartHandler: onTouchStartHandlerForAutocomplete
+      onTouchStartHandler: onTouchStartHandlerForAutocomplete,
+      handleClearCurrentState
     } = useAutosuggestions(
       autosuggestionsConfig.debounceTime,
       autosuggestionsConfig.shouldAcceptAutosuggestionOnKeyPress,
@@ -235,6 +236,7 @@ export const BaseCopilotTextarea = defineComponent({
         })
         editor.value?.on('blur', ({ event }) => {
           props.onBlur?.(event)
+          handleClearCurrentState()
           clearAutocompletionsFromEditor(editor)
         })
       }

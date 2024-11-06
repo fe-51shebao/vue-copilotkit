@@ -10,6 +10,7 @@ export interface UseAutosuggestionsResult {
   onChangeHandler: (newEditorState: EditorAutocompleteState | null) => void
   onKeyDownHandler: (event: KeyboardEvent) => void
   onTouchStartHandler: (event: TouchEvent) => void
+  handleClearCurrentState: () => void
 }
 
 export function useAutosuggestions(
@@ -60,10 +61,19 @@ export function useAutosuggestions(
     return new Debouncer<[editorAutocompleteState: EditorAutocompleteState]>(debounceTime)
   })
 
+  // clean current state when unmounting or disabling
+  const handleClearCurrentState = () => {
+    debouncedFunction.value.cancel()
+    currentAutocompleteSuggestion.value = null
+  }
   watchEffect(onInvalidate => {
+    // 当 disabled 或 debouncedFunction 变化时，重新执行
+    if (disabled.value || debouncedFunction.value) {
+      handleClearCurrentState()
+    }
+    // 注册清理函数，在下次 effect 执行前或组件卸载时调用
     onInvalidate(() => {
-      debouncedFunction.value.cancel()
-      currentAutocompleteSuggestion.value = null
+      handleClearCurrentState()
     })
   })
 
@@ -107,6 +117,7 @@ export function useAutosuggestions(
     currentAutocompleteSuggestion: currentAutocompleteSuggestion,
     onChangeHandler: onChange,
     onKeyDownHandler: keyDownOrTouchHandler,
-    onTouchStartHandler: keyDownOrTouchHandler
+    onTouchStartHandler: keyDownOrTouchHandler,
+    handleClearCurrentState
   }
 }
