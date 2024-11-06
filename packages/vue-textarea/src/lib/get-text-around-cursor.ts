@@ -100,16 +100,6 @@ export function getFullEditorTextWithNewlines(editor: ShallowRef<Editor | undefi
 
 // Helper function to extract text with newlines
 function extractTextWithNewlines(editor: Editor, from: number, to: number): string {
-  const { state } = editor ?? {}
-  let text = ''
-
-  state?.doc.nodesBetween(from, to, (node, pos) => {
-    if (node.isText) {
-      text += node.text?.slice(Math.max(0, from - pos), Math.min(node.text.length, to - pos)) || ''
-    } else if (node.isBlock) {
-      text += '\n'
-    }
-  })
-
+  const text = editor.state.doc.textBetween(from, to, '\n', '\n')
   return text
 }
