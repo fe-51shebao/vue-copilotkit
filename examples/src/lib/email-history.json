@@ -1,20 +1,20 @@
 [
   {
     "timestamp": "2024-02-12T11:00:00",
-    "from": "me",
+    "from": "彭于晏 <pengyuyan@acme.com>",
     "to": "John Doe <john@acme.com>",
-    "body": "Hi John, what was the outcome of the call with SpaceY?"
+    "body": "嗨,John,与 SpaceY 的通话结果如何？"
   },
   {
     "timestamp": "2024-02-14T12:00:00",
     "from": "John Doe <john@acme.com>",
-    "to": "me",
-    "body": "Thanks for reminding me! Albert from SpaceY is excited to continue. First, we'll build their landing page."
+    "to": "彭于晏 <pengyuyan@acme.com>",
+    "body": "谢谢提醒！SpaceY 的 Albert 很高兴继续。首先,我们将构建他们的登陆页面。"
   },
   {
     "timestamp": "2024-01-14T14:00:00",
     "from": "John Doe <john@acme.com>",
-    "to": "me",
-    "body": "Forgot to mention, they really liked your proposed technology stack. They'd also like to add some AI features."
+    "to": "彭于晏 <pengyuyan@acme.com>",
+    "body": "忘了说了,他们真的很喜欢你提出的技术堆栈。他们还想添加一些 AI 功能。"
   }
 ]

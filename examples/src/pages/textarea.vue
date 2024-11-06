@@ -1,7 +1,7 @@
 <template>
   <div class="textarea-box">
     <header class="border-b px-6 py-4">
-      <h2 class="text-2xl font-semibold">Email Thread: Project Kickoff Meeting</h2>
+      <h2 class="text-2xl font-semibold">电子邮件主题：项目启动会议</h2>
     </header>
     <div class="flex w-full flex-col border-r bg-muted p-4">
       <div class="space-y-4">
@@ -29,8 +29,7 @@
           placeholder="Write your reply..."
           :autosuggestionsConfig="{
             textareaPurpose: `Asisst me in replying to this email thread. Remmeber all important details.`,
-            chatApiConfigs: {},
-            contextCategories: [salesReplyCategoryId]
+            chatApiConfigs: {}
           }"
           :onChange="e => setInput(e)"
         />
@@ -39,21 +38,21 @@
     </div>
   </div>
   <div>
-    <img src="https://github.com/fe-51shebao/.github/raw/main/demo1-ok.gif" alt="智能email回复演示">
+    <img src="https://github.com/fe-51shebao/.github/raw/main/demo1-ok.gif" alt="智能email回复演示" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { CopilotTextarea } from '@copilotkit/vue-textarea'
+import { useCopilotReadable, DocumentPointer, useMakeCopilotDocumentReadable } from '@copilotkit/vue-core'
 import { ref } from 'vue'
 import emailHistory from '../lib/email-history.json'
 import { useStateWithLocalStorage } from '../hooks/utils'
-import { DocumentPointer, useCopilotReadable, useMakeCopilotDocumentReadable } from '@copilotkit/vue-core'
 const emails = ref(emailHistory)
 
 useCopilotReadable({
   description: 'The history of this email thread',
-  value: emails
+  value: emails.value
 })
 
 const text = ref('')
@@ -71,28 +70,6 @@ const handleReply = () => {
   emails.value.push(email)
   setInput('')
 }
-
-const clientTranscriptSummaryDocument: DocumentPointer = {
-  id: 'clientTranscriptSummary',
-  name: 'Client Call Gong Transcript',
-  sourceApplication: 'Gong',
-  iconImageUri: 'https://asset.brandfetch.io/idHyhmcKvT/idRu6db2HA.jpeg?updated=1690987844207',
-  getContents: () => {
-    return 'This is the client transcript summary'
-  }
-}
-
-const [detailsText] = useStateWithLocalStorage('', 'cacheKey_detailsText')
-
-const salesReplyCategoryId = 'sales_reply'
-
-useCopilotReadable({
-  description: 'Details Text',
-  value: detailsText.value,
-  categories: [salesReplyCategoryId]
-})
-
-useMakeCopilotDocumentReadable(clientTranscriptSummaryDocument, [salesReplyCategoryId], [])
 </script>
 
 <style scoped>
