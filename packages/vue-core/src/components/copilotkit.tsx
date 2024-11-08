@@ -237,7 +237,7 @@ function entryPointsToFunctionCallHandler(actions: FrontendAction<any>[]): Funct
     if (action) {
       await new Promise<void>(async (resolve, reject) => {
         try {
-          result = await action.handler(args)
+          result = await action.handler?.(args)
           resolve()
         } catch (error) {
           reject(error)

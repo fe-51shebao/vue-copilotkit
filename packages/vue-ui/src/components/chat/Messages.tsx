@@ -36,7 +36,9 @@ export const Messages = defineComponent({
     const context = useChatContext(); // context
     watch(() => props.messages,
     (newMessages, oldMessages) => {
-      msgs.value = newMessages;
+      msgs.value = newMessages ?? [];
+    }, {
+      immediate: true
     })
     const functionResults: Record<string, string> = {};
 

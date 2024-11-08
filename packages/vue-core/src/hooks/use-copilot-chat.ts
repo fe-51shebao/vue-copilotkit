@@ -75,6 +75,7 @@ export function useCopilotChat({ makeSystemMessage, ...options }: UseCopilotChat
 
   const { append, reload, stop } = useChat({
     ...options,
+    // @ts-ignore
     actions: Object.values(actions.value),
     copilotConfig: copilotApiConfig,
     initialMessages: options.initialMessages || [],
