@@ -49,6 +49,19 @@
       <button><a href="./textarea"> 去体验 </a></button>
     </div>
   </div>
+  <div class="inner_part">
+    <label for="slideImg" class="img">
+      <img class="img_3" src="https://github.com/fe-51shebao/.github/raw/main/demo4.gif">
+    </label>
+    <div class="content content_3">
+      <div class="title">操作表格</div>
+      <div class="text">
+        常见的表格操作，看看接入ai会有什么不同？
+      </div>
+      <button><a href="./table"> 去体验 </a></button>
+    </div>
+  </div>
+
 </div>
 </template>
 

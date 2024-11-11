@@ -24,3 +24,4 @@
 ![Image](https://github.com/fe-51shebao/.github/raw/main/demo1-ok.gif)
 ![Image](https://github.com/fe-51shebao/.github/raw/main/demo3-ok.gif)
 ![Image](https://github.com/fe-51shebao/.github/raw/main/demo-form.gif)
+![Image](https://github.com/fe-51shebao/.github/raw/main/demo4.gif)
