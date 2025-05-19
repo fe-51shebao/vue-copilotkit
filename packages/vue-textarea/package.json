@@ -19,7 +19,7 @@
   "dependencies": {
     "@copilotkit/runtime-client-gql": "^1.1.0",
     "@copilotkit/shared": "^1.1.0",
-    "@copilotkit/vue-core": "workspace:*",
+    "@copilotkit/vue-core": "1.0.3",
     "@tiptap/core": "^2.6.5",
     "@tiptap/extension-placeholder": "^2.6.5",
     "@tiptap/pm": "^2.6.5",

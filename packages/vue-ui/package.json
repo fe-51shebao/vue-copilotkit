@@ -19,7 +19,7 @@
   "dependencies": {
     "@copilotkit/runtime-client-gql": "^1.1.0",
     "@copilotkit/shared": "^1.1.0",
-    "@copilotkit/vue-core": "workspace:*",
+    "@copilotkit/vue-core": "1.0.3",
     "md-editor-v3": "4.18.1"
   },
   "devDependencies": {
